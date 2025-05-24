@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PetChat 项目展示</title>
+
+  <!-- 引入 ZCOOL KuaiLe 字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'ZCOOL KuaiLe', cursive;
+      background-color: #fff7e0;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #fffef8;
+      border: 4px dashed #ffbb66;
+      border-radius: 25px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 修改 header 为 flex 布局，让 logo 和标题水平排列 */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .logo-bg {
+      background-color: #ffa94d;
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 110px;
+      height: 110px;
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+    }
+
+    h1 {
+      font-size: 2.6em;
+      color: #ff6f00;
+      margin: 0;
+    }
+
+    h2 {
+      color: #ff7f27;
+      font-size: 1.8em;
+      margin-top: 35px;
+    }
+
+    p {
+      font-size: 1.3em;
+      line-height: 1.9;
+      margin-top: 20px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+      border-radius: 15px;
+      border: 3px dashed #ffa94d;
+      background-color: #fff3e0;
+    }
+
+    .paw-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ffa94d;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1em;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    .paw-button img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .paw-button:hover {
+      background-color: #ff7f0a;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* 猫爪背景动画 */
+    .paw {
+      position: absolute;
+      width: 40px;
+      opacity: 0.1;
+      animation: floatDown 10s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes floatDown {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0.2;
+      }
+      100% {
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 猫爪动画背景（动态插入） -->
+  <script>
+    for (let i = 0; i < 10; i++) {
+      const paw = document.createElement('img');
+      paw.src = 'paw-icon.png';
+      paw.className = 'paw';
+      paw.style.left = Math.random() * 100 + 'vw';
+      paw.style.top = -(Math.random() * 200) + 'px';
+      paw.style.animationDuration = (5 + Math.random() * 10) + 's';
+      document.body.appendChild(paw);
+    }
+  </script>
+
+  <!-- 点击音效 -->
+  <audio id="clickSound" src="click.wav" preload="auto"></audio>
+
+  <div class="container">
+    <div class="header">
+      <div class="logo-bg">
+        <img src="logo.png" alt="PetChat Logo" class="logo" />
+      </div>
+      <h1>PetChat</h1>
+    </div>
+
+    <p>
+      PetChat 的目的是通过人工智能技术，打破时间和空间的限制，为宠物主人提供随时随地与宠物对话的机会。
+      无论主人因工作、学习或其他原因无法陪伴宠物，PetChat 都能通过智能对话、个性化问候和定时提醒等功能，
+      帮助主人与宠物保持情感连接，提升陪伴的情感价值。
+    </p>
+
+    <h2>产品介绍</h2>
+    <video controls>
+      <source src="产品介绍.mp4" type="video/mp4" />
+      您的浏览器不支持视频播放。
+    </video>
+
+    <h2>场景展示</h2>
+    <video controls>
+      <source src="场景展示.mp4" type="video/mp4" />
+      您的浏览器不支持视频播放。
+    </video>
+
+    <h2>项目计划书</h2>
+    <div class="button-container">
+      <a class="paw-button" href="PetChat项目计划书.pdf" target="_blank" onclick="playClick()">
+        <img src="paw-icon.png" alt="PDF" /> 查看项目 PDF
+      </a>
+    </div>
+
+    <h2>下载 PetChat Demo</h2>
+    <div class="button-container">
+      <a class="paw-button" href="PetChat-Demo.zip" download onclick="playClick()">
+        <img src="paw-icon.png" alt="ZIP" /> 点击下载 Demo
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function playClick() {
+      const sound = document.getElementById('clickSound');
+      sound.currentTime = 0; // 防止快速点击不播放
+      sound.play();
+    }
+  </script>
+
+</body>
+</html>
